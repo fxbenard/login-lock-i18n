@@ -1,0 +1,33 @@
+
+.star { list-style-image: url("../images/star.gif"); margin-left: 34px; }
+.tweet { list-style-image: url("../images/icon-twitter16x16.png"); margin-left: 34px; }
+.coins { list-style-image: url("../images/coins.png"); margin-left: 34px; }
+.wpsec { list-style-image: url("../images/wpsec.png"); margin-left: 34px; }
+.rss { list-style-image: url("../images/rss.png"); margin-left: 30px;}
+.email { list-style-image: url("../images/email_sub.png"); margin-left: 30px;}
+
+.wpsec a, .rss a, .email a { vertical-align:top; }
+
+.wpsec-rss { margin: 12px 0px; }
+
+.wpsec-inside { margin-left: 10px !important; }
+
+#donate.postbox {
+    border-color: green;
+    border-width: 2px;
+}
+#easyTooltip{
+	padding:5px 10px;
+	border:1px solid #195fa4;
+	background-color: #E3F4F9; 
+	color:#444;
+}
+.helpico {
+    background: url("../images/help.png") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+}
+.form-table th {
+    width: 210px !important;
+}
