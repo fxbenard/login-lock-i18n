@@ -42,28 +42,28 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 		 * Create a "plugin like" box.
 		 */
 		function plugin_like() {
-			$content = '<p>'.__('Why not do any or all of the following:','wpsec').'</p>';
+			$content = '<p>'.__('Why not do any or all of the following:','loginlock').'</p>';
 			$content .= '<ul>';
-			$content .= '<li class="star"><a href="'.$this->homepage.'" target="_blank">'.__('Link to our site please!','wpsec').'</a></li>';
-			$content .= '<li class="tweet"><a href="http://twitter.com/home?status='.urlencode('LoginLock for WordPress - http://wordpress.org/extend/plugins/login-lock/').'" target="_blank">'.__('Tweet this plugin!','wpsec').'</a></li>';
-			$content .= '<li class="tweet"><a href="http://twitter.com/wpsecurity" target="_blank">'.__('Follow us on Twitter','wpsec').'</a></li>';
-			$content .= '<li class="star"><a href="http://wordpress.org/extend/plugins/'.$this->hook.'/"  target="_blank">'.__('Give it a 5 star rating on WordPress.org','wpsec').'</a></li>';
-			$content .= '<li class="coins"><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8D8XCLF9BPJRY">'.__('Donate a token of your appreciation','wpsec').'</a></li>';
+			$content .= '<li class="star"><a href="'.$this->homepage.'" target="_blank">'.__('Link to our site please!','loginlock').'</a></li>';
+			$content .= '<li class="tweet"><a href="http://twitter.com/home?status='.urlencode('LoginLock for WordPress - http://wordpress.org/extend/plugins/login-lock/').'" target="_blank">'.__('Tweet this plugin!','loginlock').'</a></li>';
+			$content .= '<li class="tweet"><a href="http://twitter.com/wpsecurity" target="_blank">'.__('Follow us on Twitter','loginlock').'</a></li>';
+			$content .= '<li class="star"><a href="http://wordpress.org/extend/plugins/'.$this->hook.'/"  target="_blank">'.__('Give it a 5 star rating on WordPress.org','loginlock').'</a></li>';
+			$content .= '<li class="coins"><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8D8XCLF9BPJRY">'.__('Donate a token of your appreciation','loginlock').'</a></li>';
 			$content .= '</ul>';
-			$this->postbox($this->hook.'like', 'Like this plugin?', $content);
+			$this->postbox($this->hook.'like', __('Like this plugin?','loginlock'), $content);
 		}	
 		
 		/**
 		 * Info box with link to the support forums.
 		 */
 		function plugin_support() {
-			$content = '<p>'.__('If you have any problems with this plugin, or good ideas for improvements or new features, please ','wpsec').' <a href="https://wpsecurity.net/contact-us/" target="_blank">'.__("contact us!",'wpsec').'</a>.</p>';
-			$this->postbox($this->hook.'support', 'Need support?', $content);
+			$content = '<p>'.__('If you have any problems with this plugin, or good ideas for improvements or new features, please ','loginlock').' <a href="https://wpsecurity.net/contact-us/" target="_blank">'.__("contact us!",'loginlock').'</a></p>';
+			$this->postbox($this->hook.'support', __('Need support?','loginlock'), $content);
 		}
 
 		function plugin_sponsors() {
 			$content = '<a target="_blank" title=" Fast Secure WordPress Hosting " href="http://rocketpress.me"><img style="margin: 7px" src="http://rocketpress.me/ads/rocketlogo-225.png"></a>';
-			$this->postbox($this->hook.'support', 'Our Sponsors', $content);
+			$this->postbox($this->hook.'support', __('Our Sponsors','loginlock'), $content);
 		}
 
 
@@ -106,7 +106,7 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 			
 			$content = '<ul class="wpsec-rss">';
 			if ( !$rss_items ) {
-			    $content .= '<li class="wpsec">no news items, feed might be broken...</li>';
+			    $content .= '<li class="wpsec">'.__('no news items, feed might be broken...','loginlock').'</li>';
 			} else {
 			    foreach ( $rss_items as $item ) {
 					$content .= '<li class="wpsec">';
@@ -114,10 +114,10 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 					$content .= '</li>';
 			    }
 			}						
-			$content .= '<li class="rss"><a target="_blank" href="'.$this->feed.'">Subscribe with RSS</a></li>';
-			$content .= '<li class="email"><a target="_blank" href="https://wpsecurity.net/wordpress-security-sign-up/">Subscribe by email</a></li>';
+			$content .= '<li class="rss"><a target="_blank" href="'.$this->feed.'">'.__('Subscribe with RSS','loginlock').'</a></li>';
+			$content .= '<li class="email"><a target="_blank" href="https://wpsecurity.net/wordpress-security-sign-up/">'.__('Subscribe by email','loginlock').'</a></li>';
 			$content .= '</ul>';
-			$this->postbox('wpseclatest', 'Latest news from WPSecurity.net', $content);
+			$this->postbox('wpseclatest', __('Latest news from WPSecurity.net','loginlock'), $content);
 		}
 
 		/**
@@ -135,8 +135,8 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 				update_option('wpsec_loginwidget',$options);
 			}			
 			if ( isset($options['removedbwidget'.$network]) && $options['removedbwidget'.$network] ) {
-				echo "If you reload, this widget will be gone and never appear again, unless you decide to delete the database option 'wpsec_loginwidget'.";
-				return;
+echo "If you reload, this widget will be gone and never appear again, unless you decide to delete the database option 'wpsec_loginwidget'.";
+						return;
 			}
 
 			$rss_items = $this->fetch_rss_items( 3 );
@@ -148,7 +148,7 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 			echo '<ul>';
 
 			if ( !$rss_items ) {
-			    echo '<li class="wpsec">no news items, feed might be broken...</li>';
+			    echo '<li class="wpsec">'.__('no news items, feed might be broken...','loginlock').'</li>';
 			} else {
 			    foreach ( $rss_items as $item ) {
 					echo '<li class="wpsec">';
@@ -161,9 +161,10 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 
 			echo '</ul>';
 			echo '<br class="clear"/><div style="margin-top:10px;border-top: 1px solid #ddd; padding-top: 10px; text-align:center;">';
-			echo '<a href="'.$this->feed.'"><img src="'.get_bloginfo('wpurl').'/wp-includes/images/rss.png" alt=""/> Subscribe with RSS</a>';
+			echo '<a href="'.$this->feed.'"><img src="'.get_bloginfo('wpurl').'/wp-includes/images/rss.png" alt=""/>'.__('Subscribe with RSS','loginlock').'</a>';
 			echo ' &nbsp; &nbsp; &nbsp; ';
-			echo '<a target="_blank" href="https://wpsecurity.net/wordpress-security-sign-up/"><img src="'.WPSEC_LOGINLOCK_URL.'images/email_sub.png" alt=""/> Subscribe by email</a>';
+			echo '<a target="_blank" href="https://wpsecurity.net/wordpress-security-sign-up/"><img src="'.WPSEC_LOGINLOCK_URL.'images/email_sub.png" alt=""/>'.__('Subscribe by email','loginlock').'</a>';
+
 			//echo '<form class="alignright" method="post"><input type="hidden" name="wpsec_removedbwidget" value="true"/><input title="Remove this widget from all users dashboards" class="button" type="submit" value="X"/></form>';
 			echo '</div>';
 			echo '</div>';
@@ -176,7 +177,7 @@ if ( !class_exists('Custom_Plugin_Admin') ) {
 
 			$options = get_option('wpsec_loginwidget');
 			if ( !isset($options['removedbwidget'.$network]) || !$options['removedbwidget'.$network] )
-	    		wp_add_dashboard_widget( 'wpsec_db_widget' , 'WordPress Security News' , array(&$this, 'db_widget') );
+	    		wp_add_dashboard_widget( 'wpsec_db_widget' , __('WordPress Security News','loginlock') , array(&$this, 'db_widget') );
 		}
 		
 		function widget_order( $arr ) {

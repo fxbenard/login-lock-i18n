@@ -23,6 +23,8 @@ core WordPress code. Those portions are copyright of their respective owners.
 ======================================================================*/
 
 
+
+
 define( 'WPSEC_LOGINLOCK_VERSION', '2.2.4' );
 define( 'WPSEC_LOGINLOCK_DB_VERSION', '2.0' );
 define( 'WPSEC_LOGINLOCK_URL', plugin_dir_url(__FILE__) );
@@ -78,7 +80,6 @@ class LoginLock {
 			add_filter( 'wp_network_dashboard_widgets', array($csa, 'widget_order'), 9999999);
 		}
 	}
-
 
 	function LoginLock() { 
 		__construct();
@@ -152,15 +153,15 @@ class LoginLock {
 
 		$opts = array(
 			'max_login_retries' => 5,
-			'retries_within' => 30,
-			'lockout_length' => 60,
-			'notify_admins' => 'yes',
+			'retries_within'    => 30,
+			'lockout_length'    => 60,
+			'notify_admins'     => 'yes',
 			'force_psw_changes' => 'yes',
-			'psw_change_days' => 30, 
-			'psw_length' => 12, 
-			'psw_policy' => 'high', 
-			'psw_reuse' => 'yes',
-			'idle_timer' => 15
+			'psw_change_days'   => 30, 
+			'psw_length'        => 12, 
+			'psw_policy'        => 'high', 
+			'psw_reuse'         => 'yes',
+			'idle_timer'        => 15
 		);
 
 		return $opts;
@@ -210,7 +211,7 @@ class LoginLock {
 				$this->ll_reset_psw( $_GET['key'], $_GET['login'] );
 				exit;
 			} else { 
-				wp_die('Seems as though there was an error. Hmmm.', 'Error');
+				wp_die(__('Seems as though there was an error. Hmmm.','loginlock'), 'Error');
 
 			}
 		}
@@ -351,20 +352,20 @@ class LoginLock {
 		else
 			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-		$title = __('SECURITY ALERT: Lockout Notice');
+		$title = __('SECURITY ALERT: Lockout Notice','loginlock');
 
-		$message = __('This notice is to inform you that someone at IP address');
+		$message = __('This notice is to inform you that someone at IP address','loginlock');
 		$message .= ' ' .$ip . ' ';
-		$message .= __('tried to login to your site');
+		$message .= __('tried to login to your site','loginlock');
 		$message .= ' "' . $blogname . '" ';
-		$message .= __('and failed.') . "\n\n";
+		$message .= __('and failed.','loginlock') . "\n\n";
 
-		$message .= __('The targeted username was');
+		$message .= __('The targeted username was','loginlock');
 		$message .= ' ' . $username . "\n\n";
 
-		$message .= __('The IP address has been blocked for ');
+		$message .= __('The IP address has been blocked for','loginlock');
 		$message .= $this->ll_options['lockout_length'];
-		$message .= __('minutes.') . "\n\n";
+		$message .= __('minutes.','loginlock') . "\n\n";
 
 		foreach( $admins as $admin ) { 
 			wp_mail($admin, $title, $message);
@@ -458,7 +459,7 @@ class LoginLock {
 
 		for ($i=0; $i < count($oh); $i++) { 
 			if ( wp_check_password( $pass, $oh[$i] ) ) {
-				return __('You cannot reuse old passwords! Choose a different password.');
+				return __('You cannot reuse old passwords! Choose a different password.','loginlock');
 			}
 		}
 
@@ -509,19 +510,19 @@ class LoginLock {
 		else
 			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-		$message = __('ALERT: The admin of ' . $blogname . ' requires that you reset the password for the following account:') . "\r\n\r\n";
+		$message = __('ALERT: The admin of ' . $blogname . ' requires that you reset the password for the following account:','loginlock') . "\r\n\r\n";
 		$message .= network_site_url() . "\r\n\r\n";
-		$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-		$message .= __('You must reset your password before you can log back in. To reset your password, visit the following address:') . "\r\n\r\n";
+		$message .= sprintf(__('Username: %s','loginlock'), $user_login) . "\r\n\r\n";
+		$message .= __('You must reset your password before you can log back in. To reset your password, visit the following address:','loginlock') . "\r\n\r\n";
 		$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
 
-		$title = sprintf( __('[%s] Emergency Password Reset'), $blogname );
+		$title = sprintf( __('[%s] Emergency Password Reset','loginlock'), $blogname );
 
 		$title = apply_filters('retrieve_password_title', $title);
 		$message = apply_filters('retrieve_password_message', $message, $key);
 
 		if ( $message && !wp_mail($user_email, $title, $message) )
-			return  __('The e-mail could not be sent to '. $user_login ) . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.');
+			return  __('The e-mail could not be sent to '. $user_login ) . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.','loginlock');
 
 	}
 
@@ -547,9 +548,9 @@ class LoginLock {
 		// force a change now? 
 		if ( '1' == get_user_meta($id, 'll_force_password_change_now', true) ) {
 		    $this->ll_login_header();
-		    echo '<p style="color:#cf0000">'. __('An administrator has logged you out and you <em>must</em> reset your password before you can log back in.') . '</p>';
-		    echo '<p style="margin-top: 12px">'. __('Check your email for a password reset notice.') . '</p>';	   
-		    echo '<p style="margin-top: 12px">'. __('If after 10 minutes you do not have the notice then go to the login page, click the "Lost your password" link and reset your password.') . '</p>';
+		    echo '<p style="color:#cf0000">'. __('An administrator has logged you out and you <em>must</em> reset your password before you can log back in.','loginlock') . '</p>';
+		    echo '<p style="margin-top: 12px">'. __('Check your email for a password reset notice.','loginlock') . '</p>';	   
+		    echo '<p style="margin-top: 12px">'. __('If after 10 minutes you do not have the notice then go to the login page, click the "Lost your password" link and reset your password.','loginlock') . '</p>';
 		    wp_logout();
 		    $this->ll_login_footer();
 		    exit;
@@ -779,7 +780,7 @@ class LoginLock {
 		echo '<div id="loginlock_notice" class="'.$msg[1].'"><p>';
 		_e($msg[2]);
 		echo ' &nbsp; (';
-		printf( '<a href="%s" id="loginlock_notice">' . __('Do not remind me again') . '</a>', '?login_notice_show=0' );
+		printf( '<a href="%s" id="loginlock_notice">' . __('Do not remind me again','loginlock') . '</a>', '?login_notice_show=0' );
 		echo ')</p></div>';
 	}
 
@@ -801,15 +802,15 @@ class LoginLock {
 		$key = preg_replace('/[^a-z0-9]/i', '', $key);
 
 		if ( empty( $key ) || !is_string( $key ) )
-			return new WP_Error('invalid_key', __('Invalid key'));
+			return new WP_Error('invalid_key', __('Invalid key','loginlock','loginlock'));
 	
 		if ( empty($login) || !is_string($login) )
-			return new WP_Error('invalid_key', __('Invalid key'));
+			return new WP_Error('invalid_key', __('Invalid key','loginlock','loginlock'));
 
 		$user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE user_activation_key = %s AND user_login = %s", $key, $login));
 
 		if ( empty( $user ) )
-			return new WP_Error('invalid_key', __('Invalid key'));
+			return new WP_Error('invalid_key', __('Invalid key','loginlock'));
 
 		return $user;
 	}
@@ -821,7 +822,7 @@ class LoginLock {
 		$user = $this->ll_check_password_reset_key( $key, $login );
 
 		if ( is_wp_error($user) ) {
-			$this->ll_login_header(__('Reset Password'), '<p class="message reset-pass">' . __('Your password reset key is invalid.') . '</p>', $errors );
+			$this->ll_login_header(__('Reset Password','loginlock'), '<p class="message reset-pass">' . __('Your password reset key is invalid.','loginlock') . '</p>', $errors );
 			// ( site_url('wp-login.php?action=lostpassword&error=invalidkey') );
 			exit;
 		}
@@ -830,15 +831,15 @@ class LoginLock {
 
 		if ( isset($_POST['ll_reset_password']) && !wp_verify_nonce($_POST['ll_reset_password'], 'll_reset_psw') ) { 
 
-			$errors = new WP_Error('password_reset_auth_error', __('You are not authorized to take that action!'));
+			$errors = new WP_Error('password_reset_auth_error', __('You are not authorized to take that action!','loginlock'));
 
 		} else if ( isset($_POST['pass1']) && $_POST['pass1'] != $_POST['pass2'] ) {
 
-			$errors = new WP_Error('password_reset_mismatch', __('The passwords do not match.'));
+			$errors = new WP_Error('password_reset_mismatch', __('The passwords do not match.','loginlock'));
 
 		} else if ( ( isset( $_POST['pass1'] ) && !empty( $_POST['pass1'] ) ) && ( true !== $this->ll_test_new_psw( $_POST['pass1'], $login ) ) ) { 
 
-			$errors = new WP_Error('password_reset_mismatch', __('You cannot reuse that password yet. Please choose a different password.'));
+			$errors = new WP_Error('password_reset_mismatch', __('You cannot reuse that password yet. Please choose a different password.','loginlock'));
 
 		} else if ( isset( $_POST['pass1'] ) && !empty( $_POST['pass1'] ) && $msg = $this->ll_check_psw_strength( $_POST['pass1'] ) ) { 
 
@@ -850,14 +851,14 @@ class LoginLock {
 			    wp_set_password($_POST['pass1'], $user->ID);
 			    wp_password_change_notification($user);
 			    delete_user_meta($user->ID, 'll_force_password_change_now');
-			    $this->ll_login_header(__('Password Reset'), '<p class="message reset-pass">' . __('Your password has been reset.') . ' <a href="' . site_url('wp-login.php', 'login') . '">' . __('Log in') . '</a></p>');
+			    $this->ll_login_header(__('Password Reset','loginlock'), '<p class="message reset-pass">' . __('Your password has been reset.','loginlock') . ' <a href="' . site_url('wp-login.php', 'login') . '">' . __('Log in','loginlock') . '</a></p>');
 			    $this->ll_login_footer();
 			    exit;
 
 		}
 
 		if (isset($errors->errors['password_reset_auth_error'])) {
-		    $msg = 'You are not authorized to take that action';
+		    $msg = __('You are not authorized to take that action','loginlock');
 		    $this->ll_login_header('', '', $errors); 
 		    exit;
 		}
@@ -865,15 +866,15 @@ class LoginLock {
 		wp_enqueue_script('utils');
 		wp_enqueue_script('user-profile');
 
-		$msg = __('You must reset your password.').'<br/><br/>';
+		$msg = __('You must reset your password.','loginlock').'<br/><br/>';
 
 		if ('yes' == $this->ll_options['psw_reuse'])
 
-		$msg .= __('You may not reuse old passwords!').'<br/><br/>';
+		$msg .= __('You may not reuse old passwords!', 'loginlock').'<br/><br/>';
 
-		$msg .= __('Enter your new password below:');
+		$msg .= __('Enter your new password below:', 'loginlock');
 
-		$this->ll_login_header(__('Reset Password'), '<p class="message reset-pass ">' . $msg . '</p>', $errors );
+		$this->ll_login_header(__('Reset Password', 'loginlock'), '<p class="message reset-pass ">' . $msg . '</p>', $errors );
 
 
 	?>
@@ -881,44 +882,44 @@ class LoginLock {
 		<input type="hidden" id="user_login" value="<?php echo esc_attr( $_GET['login'] ); ?>" autocomplete="off" />
 		<?php wp_nonce_field('ll_reset_psw', 'll_reset_password'); ?>
 		<p>
-			<label><?php _e('New password') ?><br />
+			<label><?php _e('New password','loginlock') ?><br />
 			<input type="password" name="pass1" id="pass1" class="input" size="20" value="" autocomplete="off" /></label>
 		</p>
 		<p>
-			<label><?php _e('Confirm new password') ?><br />
+			<label><?php _e('Confirm new password', 'loginlock') ?><br />
 			<input type="password" name="pass2" id="pass2" class="input" size="20" value="" autocomplete="off" /></label>
 		</p>
 
-		<div id="pass-strength-result" class="hide-if-no-js"><?php _e('Strength indicator'); ?></div>
+		<div id="pass-strength-result" class="hide-if-no-js"><?php _e('Strength indicator', 'loginlock'); ?></div>
 		<p class="description indicator-hint">
 		    <strong>
 		    <span style="color:#cf0000">
-			<?php _e('NOTE');?>: 
+			<?php _e('NOTE', 'loginlock');?>: 
 		    </span>
-		    <?php _e('The password must be at least');
+		    <?php _e('The password must be at least', 'loginlock');
 			echo ' '.$this->ll_options['psw_length'].' ';
 		    ?>
 
-		    <?php _e('characters long.');?>
+		    <?php _e('characters long.', 'loginlock');?>
 
 		    <?php 
 			if ('high' == $this->ll_options['psw_policy'] ) { 
-			    _e('You must include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; ).');
+			    _e('You must include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp;.', 'loginlock');
 			} else if  ('medium' == $this->ll_options['psw_policy'] ) { 
-			    _e('You must include upper and lower case letters and numbers.');
+			    _e('You must include upper and lower case letters and numbers.', 'loginlock');
 			}
 		    ?>
 		    </strong>
 		</p>
 
 		<br class="clear" />
-		<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="<?php esc_attr_e('Reset Password'); ?>" tabindex="100" /></p>
+		<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="<?php esc_attr_e('Reset Password', 'loginlock'); ?>" tabindex="100" /></p>
 	    </form>
 
 	<p id="nav">
-	<a href="<?php echo site_url('wp-login.php', 'login') ?>"><?php _e('Log in') ?></a>
+	<a href="<?php echo site_url('wp-login.php', 'login') ?>"><?php _e('Log in', 'loginlock') ?></a>
 	<?php if (get_option('users_can_register')) : ?>
-	| <a href="<?php echo site_url('wp-login.php?action=register', 'login') ?>"><?php _e('Register') ?></a>
+	| <a href="<?php echo site_url('wp-login.php?action=register', 'login') ?>"><?php _e('Register', 'loginlock') ?></a>
 	<?php endif; ?>
 	</p>
 
@@ -982,14 +983,14 @@ class LoginLock {
 		<table class="form-table">
 		<tbody>
 		<tr id="password">
-		    <th><label for="pass1">Password Policies</label></th>
+		    <th><label for="pass1"><?php _e('Password Policies','loginlock');?></label></th>
 		    <td>
 			<strong>
 			<?php
 			if ('high' == $this->ll_options['psw_policy'] ) 
-			    _e('You MUST include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; ).');
+			    _e('You MUST include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp;.', 'loginlock');
 			else if  ('medium' == $this->ll_options['psw_policy'] )
-			    _e('You MUST include upper and lower case letters and numbers.');
+			    _e('You MUST include upper and lower case letters and numbers.', 'loginlock');
 
 			?>
 			</strong>
@@ -1026,7 +1027,7 @@ class LoginLock {
 		$ps = strtolower($pass); 
 
 		if ( in_array($ps, $bad_pass) === true ) { 
-			$msg = __('Your password is one of the most commonly used passwords! Pick a different one.');
+			$msg = __('Your password is one of the most commonly used passwords! Pick a different one.', 'loginlock');
 			return $msg;
 		}
 
@@ -1050,7 +1051,7 @@ class LoginLock {
 		    }
 
 		    if ( !$got_nums || !$got_specials || !$got_lower || !$got_upper)
-			$msg = __('You MUST include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; ).');
+			$msg = __('You MUST include upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp;.', 'loginlock');
 
 		} else if  ('medium' == $this->ll_options['psw_policy'] ) { 
 
@@ -1064,12 +1065,12 @@ class LoginLock {
 		    }
 
 		    if ( !$got_nums || !$got_lower || !$got_upper)
-			$msg = __('You MUST include upper and lower case letters and numbers.');
+			$msg = __('You MUST include upper and lower case letters and numbers.', 'loginlock');
 
 		}
 
 		if ( strlen($pass) < $this->ll_options['psw_length'] )
-		    $msg .= '<br/>' . __('Your password is too short');
+		    $msg .= '<br/>' . __('Your password is too short', 'loginlock');
 
 		return $msg;
 	}
@@ -1168,7 +1169,7 @@ class LoginLock {
 		if ( !current_user_can('activate_plugins') ) { 
 		?>
 		    <div class=wrap>
-			<p>You do not have permission to access this page.</p>
+			<p><?php _e('You do not have permission to access this page.','loginlock');?></p>
 		    </div>
 		<?php
 		    return;
@@ -1179,7 +1180,7 @@ class LoginLock {
 		    ?>
 		    <div class="error settings-error" id="setting-error-settings_updated"> 
 			<p style="padding: 7px; background-color: #cf0000; color:#fff; font-weight:bold; font-style:italic">
-			    YOU DID NOT CHECK THE BOX!
+			    <?php _e('YOU DID NOT CHECK THE BOX!','loginlock');?>
 			</p>
 		    </div>
 		    <?php 
@@ -1189,7 +1190,7 @@ class LoginLock {
 			?>
 			<div class="error settings-error" id="setting-error-settings_updated"> 
 			    <p style="padding: 7px; background-color: #cf0000; color:#fff; font-weight:bold; font-style:italic">
-				DONE. ALL USER PASSWORDS HAVE BEEN RESET TO A RANDOM VALUE.
+				<?php _e('DONE. ALL USER PASSWORDS HAVE BEEN RESET TO A RANDOM VALUE.','loginlock');?>
 			    </p>
 			<?php 
 				if ( count($msgs) > 0 ) { 
@@ -1218,7 +1219,7 @@ class LoginLock {
 				}
 			}
 			?>
-			<div class="updated"><p><strong><?php _e("Locked out IPs released.", "loginlockdown");?></strong></p></div>
+			<div class="updated"><p><strong><?php _e("Locked out IPs released.", "loginlock");?></strong></p></div>
 			<?php
 		}
 
@@ -1240,16 +1241,16 @@ class LoginLock {
 
 
 	    <h2>
-		<?php _e('Login Lock', 'loginlockdown') ?>
+		<?php _e('Login Lock', 'loginlock') ?>
 		<?php /*
 		<div style="padding-left:40px;">
 		<?php  // <a href="http://www.facebook.com/" target="_blank"><img src="<?php echo plugins_url( 'images/facebook.png', __FILE__ ); ?>" alt="" /></a> ?>
 		<a href="http://twitter.com/wpsecurity" target="_blank"><img src="<?php echo plugins_url( 'images/twitter.png', __FILE__ ); ?>" alt="" /></a>
 		<a href="https://wpsecurity.net/feed" target="_blank"><img src="<?php echo plugins_url( 'images/rss2.png', __FILE__ ); ?>" alt="" /></a>
 		</div>
-		*/ ?>
+		
 		<p style="margin-left: 40px"><iframe src="http://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwpsecurity.net&amp;layout=standard&amp;show_faces=false&amp;width=550&amp;action=recommend&amp;font=lucida+grande&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:550px; height:35px;" allowTransparency="true"></iframe></p>
-	    </h2>
+	    */ ?></h2>
 
 
 	    <div style="width:65%;" class="postbox-container">
@@ -1262,21 +1263,21 @@ class LoginLock {
 		<?php $this->ll_options = get_option('llp_options'); ?>
 
 		<div>
-			<h3>Login Protection Settings</h3>
+			<h3><?php _e('Login Protection Settings','loginlock');?></h3>
 
 
 			<div style="background-color: #FFFBCC; padding: 10px;">
-				<?php _e('If someone attempts ', 'loginlockdown') ?>
+				<?php _e('If someone attempts ', 'loginlock') ?>
 				<input class="tip" title="testing" type="text" name="llp_options[max_login_retries]" size="4" value="<?php echo esc_attr($this->ll_options["max_login_retries"]); ?>">
-				<?php _e('logins that have invalid usernames or passwords within ', 'loginlockdown') ?>
+				<?php _e('logins that have invalid usernames or passwords within ', 'loginlock') ?>
 
 				<input type="text" name="llp_options[retries_within]" size="4" value="<?php echo esc_attr($this->ll_options["retries_within"]); ?>">
-				<?php _e('minutes', 'loginlockdown') ?>
+				<?php _e('minutes', 'loginlock') ?>
 				<br/>
-				<?php _e('then block their IP address for ', 'loginlockdown') ?>
+				<?php _e('then block their IP address for ', 'loginlock') ?>
 				<input type="text" name="llp_options[lockout_length]" size="4" value="<?php echo esc_attr($this->ll_options["lockout_length"]); ?>"> 
-				<?php _e('minutes ', 'loginlockdown') ?>
-				<a title=" Suggested settings: 5 attempts in 30 minutes, block for 60 minutes " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<?php _e('minutes ', 'loginlock') ?>
+				<a class="helpico" title="<?php _e( 'Suggested settings: 5 attempts in 30 minutes, block for 60 minutes','loginlock')?> " > &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 			</div>
 
 
@@ -1285,14 +1286,14 @@ class LoginLock {
 			<tbody>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogdescription"><?php _e('Email all admins?', 'loginlockdown') ?></label>
-				    <a title=" It's probably a good idea to leave this enabled so that you're aware when people might be trying to break into your site " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogdescription"><?php _e('Email all admins?', 'loginlock') ?></label>
+				    <a class="helpico" title="<?php _e( 'It\'s probably a good idea to leave this enabled so that you\'re aware when people might be trying to break into your site','loginlock');?> " > &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>
-				    <input type="radio" name="llp_options[notify_admins]" value="yes" <?php if( $this->ll_options["notify_admins"] == "yes" ) echo "checked"; ?>>&nbsp;Yes&nbsp;&nbsp;&nbsp;
-				    <input type="radio" name="llp_options[notify_admins]" value="no" <?php if( $this->ll_options["notify_admins"] == "no" ) echo "checked"; ?>>&nbsp;No
+				    <input type="radio" name="llp_options[notify_admins]" value="yes" <?php if( $this->ll_options["notify_admins"] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e('yes','loginlock');?>&nbsp;&nbsp;&nbsp;
+				    <input type="radio" name="llp_options[notify_admins]" value="no" <?php if( $this->ll_options["notify_admins"] == "no" ) echo "checked"; ?>>&nbsp;<?php _e('no','loginlock');?>
 				    </br>
-				    <span class="description"> &nbsp; (When enabled all administrators will receive a notice each time an IP address is blocked)</span>
+				    <span class="description"> <?php _e('(When enabled all administrators will receive a notice each time an IP address is blocked)','loginlock');?></span>
 				</td>
 			    </tr>
 
@@ -1303,75 +1304,75 @@ class LoginLock {
 
 
 		<div>
-			<h4 style="margin-left: 10px">Password Policy Settings</h4>
+			<h4 style="margin-left: 10px"><?php _e('Password Policy Settings','loginlock');?></h4>
 
 			<table class="form-table">
 			<tbody>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Enable the password policies shown below?', 'loginlockdown') ?></label>
-				    <a title=" Suggested setting: Yes, enable password policies that enforce strong password selection " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Enable the password policies shown below?', 'loginlock') ?></label>
+				    <a class="helpico" title="<?php _e( 'Suggested setting: Yes, enable password policies that enforce strong password selection','loginlock')?> " > &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>
-				    <input type="radio" name="llp_options[force_psw_changes]" value="yes" <?php if( $this->ll_options["force_psw_changes"] == "yes" ) echo "checked"; ?>>&nbsp;Yes&nbsp;&nbsp;&nbsp;
-				    <input type="radio" name="llp_options[force_psw_changes]" value="no" <?php if( $this->ll_options["force_psw_changes"] == "no" ) echo "checked"; ?>>&nbsp;No
+				    <input type="radio" name="llp_options[force_psw_changes]" value="yes" <?php if( $this->ll_options["force_psw_changes"] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e('yes','loginlock');?>&nbsp;&nbsp;&nbsp;
+				    <input type="radio" name="llp_options[force_psw_changes]" value="no" <?php if( $this->ll_options["force_psw_changes"] == "no" ) echo "checked"; ?>>&nbsp;<?php _e('no','loginlock');?>
 				    <br/>
-				    <em><?php _e('(If disabled no password policies will be enforced)', 'loginlockdown') ?></em>
+				    <em><?php _e('(If disabled no password policies will be enforced)', 'loginlock') ?></em>
 				</td>
 			    </tr>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Require password changes: ', 'loginlockdown') ?></label>
-				    <a title=" Suggested setting: 30 days at most, frequent password changes make your passwords a moving target " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Require password changes: ', 'loginlock') ?></label>
+				    <a class="helpico" title="<?php _e( 'Suggested setting: 30 days at most, frequent password changes make your passwords a moving target','loginlock');?> "> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>
-				    Every <input type="text" name="llp_options[psw_change_days]" size="4" value="<?php echo esc_attr($this->ll_options["psw_change_days"]); ?>">
-				    <?php _e('days ', 'loginlockdown') ?>
+				    <?php _e('Every','loginlock');?> <input type="text" name="llp_options[psw_change_days]" size="4" value="<?php echo esc_attr($this->ll_options["psw_change_days"]); ?>">
+				    <?php _e('days ', 'loginlock') ?>
 				    <br/>
-				    <em><?php _e('(This forces users to change their passwords upon login every X number of days)', 'loginlockdown') ?></em>
+				    <em><?php _e('(This forces users to change their passwords upon login every X number of days)', 'loginlock') ?></em>
 				    <br/>
-				    <em><?php _e('Set to 0 (zero) to disable this policy', 'loginlockdown') ?></em>
+				    <em><?php _e('Set to 0 (zero) to disable this policy', 'loginlock') ?></em>
 				</td>
 			    </tr>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Minimum password length: ', 'loginlockdown') ?> </label>
-				    <a title=" Suggested setting: 12 or more characters, the longer the password the harder it is to crack " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Minimum password length: ', 'loginlock') ?> </label>
+				    <a class="helpico" title="<?php _e( 'Suggested setting: 12 or more characters, the longer the password the harder it is to crack','loginlock');?> "> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>
 				    <input type="text" name="llp_options[psw_length]" size="4" value="<?php echo esc_attr($this->ll_options["psw_length"]); ?>">
-				    <?php _e('characters', 'loginlockdown') ?>
+				    <?php _e('characters', 'loginlock') ?>
 				    <br/>
-				    <em><?php _e('(Cannot be less than 4, cannot be more than 64 - the maximum length allowed by WordPress is 64)', 'loginlockdown') ?></em>
+				    <em><?php _e('(Cannot be less than 4, cannot be more than 64 - the maximum length allowed by WordPress is 64)', 'loginlock'); ?></em>
 				</td>
 			    </tr>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Password strength: ', 'loginlockdown') ?></label> 
-				    <a title=" Suggested setting: High, because complex passwords are more difficult to crack " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Password strength: ', 'loginlock') ?></label> 
+				    <a class="helpico" title="<?php _e('Suggested setting: High, because complex passwords are more difficult to crack','loginlock');?> ">  &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>
 				    <input type="radio" name="llp_options[psw_policy]" value="low" <?php if( $this->ll_options["psw_policy"] == "low" ) echo "checked"; ?>>
-				    <?php _e('Low - no specific character requirements', 'loginlockdown') ?><br/>
+				    <?php _e('Low - no specific character requirements', 'loginlock') ?><br/>
 
 				    <input type="radio" name="llp_options[psw_policy]" value="medium" <?php if( $this->ll_options["psw_policy"] == "medium" ) echo "checked"; ?>>
-				    <?php _e('Medium - Require uppercase and lowercase letters, plus numbers', 'loginlockdown') ?><br/>
+				    <?php _e('Medium - Require uppercase and lowercase letters, plus numbers', 'loginlock') ?><br/>
 
 				    <input type="radio" name="llp_options[psw_policy]" value="high" <?php if( $this->ll_options["psw_policy"] == "high" ) echo "checked"; ?>>
-				    <?php _e('High - Same as Medium, but also require special characters such as !@#$%^&*() etc.', 'loginlockdown') ?><br/>
+				    <?php _e('High - Same as Medium, but also require special characters such as !@#$%^&*() etc.', 'loginlock') ?><br/>
 				</td>
 			    </tr>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Password recycling:', 'loginlockdown') ?></label>
-				    <a title=" Suggested setting: Yes, disallow password reuse. " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Password recycling:', 'loginlock') ?></label>
+				    <a class="helpico" title="<?php _e('Suggested setting: Yes, disallow password reuse.','loginlock');?> " > &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
 				</th>
 				<td>		
-				    <?php _e('Disallow password reuse?', 'loginlockdown') ?><br/>
-				    <input type="radio" name="llp_options[psw_reuse]" value="yes" <?php if( $this->ll_options["psw_reuse"] == "yes" ) echo "checked"; ?>>&nbsp;Yes&nbsp;&nbsp;&nbsp;
-				    <input type="radio" name="llp_options[psw_reuse]" value="no" <?php if( $this->ll_options["psw_reuse"] == "no" ) echo "checked"; ?>>&nbsp;No
+				    <?php _e('Disallow password reuse?', 'loginlock') ?><br/>
+				    <input type="radio" name="llp_options[psw_reuse]" value="yes" <?php if( $this->ll_options["psw_reuse"] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e('yes','loginlock');?>&nbsp;&nbsp;&nbsp;
+				    <input type="radio" name="llp_options[psw_reuse]" value="no" <?php if( $this->ll_options["psw_reuse"] == "no" ) echo "checked"; ?>>&nbsp;<?php _e('no','loginlock');?>
 				    <br/>
-				    <em><?php _e('(If enabled the last 5 passwords per user will be remembered and not allowed to be reused)', 'loginlockdown') ?></em>
+				    <em><?php _e('(If enabled the last 5 passwords per user will be remembered and not allowed to be reused)', 'loginlock') ?></em>
 				</td>
 			    </tr>
 
@@ -1382,21 +1383,21 @@ class LoginLock {
 
 
 		<div>
-			<h4 style="margin-left: 10px">Idle Logout</h4>
+			<h4 style="margin-left: 10px"><?php _e('Idle Logout','loginlock')?></h4>
 
 			<table class="form-table">
 			<tbody>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"><?php _e('Logout idle users', 'loginlockdown') ?></label>
-				    <a title=" Suggested setting: 15 minutes at most, the helps guard against having unauthorized people use someone's logged-in account in cases where computers are shared, lost, or stolen " class="helpico"> &nbsp;  &nbsp;  &nbsp;  &nbsp; </a>
+				<th scope="row"><label for="blogname"><?php _e('Logout idle users', 'loginlock') ?></label>
+				  <a class="helpico" title="<?php _e( 'Suggested setting: 15 minutes at most, the helps guard against having unauthorized people use someones logged-in account in cases where computers are shared, lost, or stolen','loginlock') ;?>"> &nbsp; &nbsp; &nbsp; &nbsp; </a>
 				</th>
 				<td>
-				    <?php _e('Logout users after'); ?> 
+				    <?php _e('Logout users after','loginlock'); ?> 
 				    <input type="text" size="4" name="llp_options[idle_timer]" value="<?php echo $this->ll_options["idle_timer"] ?>">
-				    <?php echo ' ' . __('minutes of no activity'); ?>
+				    <?php _e('minutes of no activity','loginlock'); ?>
 				    <br/>
-				    <em><?php _e('Set to 0 (zero) to disable this feature.', 'loginlockdown') ?></em>
+				    <em><?php _e('Set to 0 (zero) to disable this feature.', 'loginlock') ?></em>
 				</td>
 			    </tr>
 
@@ -1405,40 +1406,40 @@ class LoginLock {
 		</div>
 
 		<div class="submit" style="margin-left: 15px">
-			<input type="submit" name="update_loginlock" value="<?php _e('Update Settings', 'loginlockdown') ?>" />
+			<input type="submit" name="update_loginlock" value="<?php _e('Update Settings', 'loginlock') ?>" />
 		</div>
 
 	    </form>
 
 
 		<div class="postbox">
-			<h3 style="color:#cf0000">Force Password Changes Now</h3>
+			<h3 style="color:#cf0000"><?php _e('Force Password Changes Now','loginlock');?></h3>
 			<form action="" method="post">
 			<table class="form-table">
 			<tbody>
 
 			    <tr valign="top">
-				<th scope="row"><label for="blogname"  style="color:#cf0000; font-weight:bold"><?php _e('In case of emergency', 'loginlockdown') ?></label></th>
+				<th scope="row"><label for="blogname"  style="color:#cf0000; font-weight:bold"><?php _e('In case of emergency', 'loginlock') ?></label></th>
 				<td>
 				    <?php wp_nonce_field('emergency_psw_reset', 'reset_all_psws_now'); ?>
 				    <input type="hidden" name="emergency" value="1">
 				    <input type="checkbox" name="emergency_psw_change" value="go"> 
 					<span  style="color:#cf0000; font-weight:bold">
-					    <?php _e('Logout all users and force password changes now', 'lockdown');?>
+					    <?php _e('Logout all users and force password changes now', 'loginlock');?>
 					</span>
 				    </br>
-				    <span class="description"> &nbsp; (Check the box and click the button below to force all users - INCLUDING YOU - to change their passwords the next time they access this site)</span>
+				    <span class="description"><?php _e('Check the box and click the button below to force all users - INCLUDING YOU - to change their passwords the next time they access this site','loginlock')?></span>
 				    <br/><br/>
-				    <span class="description">NOTE: When you do this ALL user passwords will be reset to a random value, ALL users will receive an email message instructing them to reset their passwords, and ALL users will be forcibly logged out immediately - INCLUDING YOU!</span>
+				    <span class="description"><?php _e('NOTE: When you do this ALL user passwords will be reset to a random value, ALL users will receive an email message instructing them to reset their passwords, and ALL users will be forcibly logged out immediately - INCLUDING YOU!','loginlock')?></span>
 				    <br/><br/>
-				    <span class="description">You currently have <?php echo $usercount ?> users in your database. If you have more than 100 users then using this feature might cause your hosting company or mail service provider to flag your account for sending too many email messages too fast!</span>
+				    <span class="description"><?php printf(__('You currently have %1$s users in your database. If you have more than 100 users then using this feature might cause your hosting company or mail service provider to flag your account for sending too many email messages too fast!','loginlock'),$usercount );?></span>
 				</td>
 			    </tr>
 
 			</tbody>
 			</table>
 			<div class="submit">
-				<input style="color:#cf0000;font-weight:bold; margin-left: 15px" type="submit" name="panic_button" value="<?php _e('Force Password Changes Now', 'loginlockdown') ?>" />
+				<input style="color:#cf0000;font-weight:bold; margin-left: 15px" type="submit" name="panic_button" value="<?php _e('Force Password Changes Now', 'loginlock') ?>" />
 			</div>
 			</form>
 		</div>
@@ -1446,7 +1447,7 @@ class LoginLock {
 
 
 		<div class="postbox">
-			<h3><?php _e('Blocked IP Addresses', 'loginlockdown') ?></h3>
+			<h3><?php _e('Blocked IP Addresses', 'loginlock') ?></h3>
 
 			<form method="post" action="<?php echo esc_attr($_SERVER["REQUEST_URI"]); ?>">
 			    <?php
@@ -1458,7 +1459,7 @@ class LoginLock {
 
 				    if( 0 == $num_lockedout ) {
 
-					    _e('<p style="margin-left: 15px">No IP addresses are blocked.</p>', 'lockdown');
+					   echo '<p style="margin-left: 15px;">'._e('No IP addresses are blocked.','loginlock').'</p>';
 
 				    } else {
 
@@ -1470,7 +1471,7 @@ class LoginLock {
 							<input type="checkbox" name="releaselocks[]" value="<?php echo $val['lockdown_ID']; ?>"> 
 							<?php echo $val['lockdown_IP']; ?> 
 							(<?php echo $val['minutes_left']; ?> 
-							<?php echo ' '. __('minutes remaining', 'wpsec') . ')'; ?>
+							<?php echo ' '. __('minutes remaining', 'loginlock') . ')'; ?>
 						    </li>
 						    <?php
 					    }
@@ -1481,7 +1482,7 @@ class LoginLock {
 			    ?>
 			    <?php if ( count($locklist) > 0) { ?>
 			    <div class="submit">
-				<input style="margin-left: 15px" type="submit" name="release_lockdowns" value="<?php _e('Unblock Selected', 'loginlockdown') ?>" />
+				<input style="margin-left: 15px" type="submit" name="release_lockdowns" value="<?php _e('Unblock Selected', 'loginlock') ?>" />
 			    </div>
 			    <?php } ?>
 
@@ -1498,8 +1499,8 @@ class LoginLock {
 			    <div class="meta-box-sortables ui-sortable">
 				<?php $csa->plugin_like(); ?>
 				<?php
-				$csa->postbox('donate','<strong class="red">Donate $10, $20 or $50!</strong>',
-				'<p>This plugin represents countless hours of work, if you use it please donate a token of your appreciation!</p><br/>
+				$csa->postbox('donate','<strong class="red">'.__('Donate $10, $20 or $50!','loginlock').'</strong>',
+				'<p>'.__('This plugin represents countless hours of work, if you use it please donate a token of your appreciation!','loginlock').'</p><br/>
 				<form style="margin-left: 40px" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="8D8XCLF9BPJRY">
@@ -1530,7 +1531,7 @@ class LoginLock {
 
 
 	function login_lock_notice(){
-		echo '<p style="margin-bottom: 20px">Site protected by <a href="https://wpsecurity.net">LOGIN LOCK</a><br/>Strong <a href="https://wpsecurity.net">WordPress Security</a></p>';
+		echo '<p style="margin-bottom: 20px">'. sprintf(__('Site protected by <a href="%1$s"> LOGIN LOCK</a><br/> Created by <a href="%2$s">WordPress Security</a>','loginlock'),'https://wpsecurity.net','https://wpsecurity.net').'</p>';
 	}
 
 
@@ -1561,10 +1562,10 @@ class LoginLock {
 			$error = new WP_Error();
 
 			if ( empty($username) )
-				$error->add('empty_username', __('<strong>ERROR</strong>: You must enter a username.'));
+				$error->add('empty_username', __('<strong>ERROR</strong>: You must enter a username.','loginlock'));
 
 			if ( empty($password) )
-				$error->add('empty_password', __('<strong>ERROR</strong>: You must enter a password'));
+				$error->add('empty_password', __('<strong>ERROR</strong>: You must enter a password','loginlock'));
 
 			return $error;
 		}
@@ -1636,5 +1637,12 @@ if (!function_exists('wp_authenticate')) {
 		return $user;
 	}
 }
-
+	// Internationalization
+			add_action ('init', 'loginlock_localize_init');
+ 
+		function loginlock_localize_init () {
+		$language_dir = basename(dirname(__FILE__)) . '/languages';
+			
+  	load_plugin_textdomain ('loginlock', FALSE, $language_dir);
+}
 ?>

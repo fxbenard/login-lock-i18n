@@ -4,7 +4,7 @@ Donate link: https://wpsecurity.net/wordpress-security-login-lock/
 Tags: login, security
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable Tag: 2.2.7
+Stable Tag: 2.2.8
 
 Enforces strong password policies; provides emergency lockdown features; monitors login attempts; blocks hacker IP addresses; and logs out idle users.
 
@@ -72,6 +72,8 @@ Yes. Visit [RocketPress for fast, secure, managed Wordpress Hosting](https://roc
 2. Login Lock's emergency "panic button" section, useful when your site is hacked.
 
 == Changelog ==
+= 2.2.8 = 
+* Added internationalization by FxB
 
 = 2.2.7 = 
 * Added fix for the is_rtl() error that appears when using WP 3.3.x
