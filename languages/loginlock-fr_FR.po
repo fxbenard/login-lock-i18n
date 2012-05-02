@@ -1,0 +1,577 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: login\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-02 10:12+0100\n"
+"PO-Revision-Date: 2012-05-02 10:12+0100\n"
+"Last-Translator: FxB <fx@fxbenard.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: loginlock.php:211
+msgid "Seems as though there was an error. Hmmm."
+msgstr "On dirait qu'il y a comme une erreur. Hmmm."
+
+#: loginlock.php:352
+msgid "SECURITY ALERT: Lockout Notice"
+msgstr "ALERTE DE SECURITE&nbsp;: Avis de verrouillage"
+
+#: loginlock.php:354
+msgid "This notice is to inform you that someone at IP address"
+msgstr "Cet avis vise à vous informer que quelqu'un à l'adresse IP"
+
+#: loginlock.php:356
+msgid "tried to login to your site"
+msgstr "a essayé de se connecter à votre site"
+
+#: loginlock.php:358
+msgid "and failed."
+msgstr "et a échoué."
+
+#: loginlock.php:360
+msgid "The targeted username was"
+msgstr "Le nom d'utilisateur ciblé était"
+
+#: loginlock.php:363
+msgid "The IP address has been blocked for"
+msgstr "L'adresse IP a été bloquée pour"
+
+#: loginlock.php:365
+msgid "minutes."
+msgstr "minutes"
+
+#: loginlock.php:459
+msgid "You cannot reuse old passwords! Choose a different password."
+msgstr "Vous ne pouvez pas réutiliser d'anciens mots de passe ! Choisissez en un différent."
+
+#: loginlock.php:510
+#, php-format
+msgid "ALERT: The admin of %s requires that you reset the password for the following account:"
+msgstr "ALERTE : L'administrateur de %s demande que vous réinitialiser le mot de passe pour le compte suivant :"
+
+#: loginlock.php:512
+#, php-format
+msgid "Username: %s"
+msgstr "Identifiant : %s"
+
+#: loginlock.php:513
+msgid "You must reset your password before you can log back in. To reset your password, visit the following address:"
+msgstr "Vous devez réinitialiser votre mot de passe avant de pouvoir vous reconnecter. Pour réinitialiser votre mot de passe, rendez-vous à l'adresse suivante :"
+
+#: loginlock.php:516
+#, php-format
+msgid "[%s] Emergency Password Reset"
+msgstr "[%s] Réinitialisation de mot de passe d'urgence"
+
+#: loginlock.php:522
+msgid "The e-mail could not be sent to"
+msgstr "L'e-mail n'a pas pu être envoyé à"
+
+#: loginlock.php:522
+msgid "Possible reason: your host may have disabled the mail() function."
+msgstr "Raison possible&nbsp;: votre hébergeur peut avoir désactivé la fonction mail()."
+
+#: loginlock.php:548
+msgid "An administrator has logged you out and you <em>must</em> reset your password before you can log back in."
+msgstr "Un administrateur vous a déconnecté et vous <em>devez</em> réinitialiser votre mot de passe avant de pouvoir vous reconnecter à nouveau."
+
+#: loginlock.php:549
+msgid "Check your email for a password reset notice."
+msgstr "Consultez votre boite mail pour la notification de réinitialisation de votre mot de passe."
+
+#: loginlock.php:550
+msgid "If after 10 minutes you do not have the notice then go to the login page, click the \"Lost your password\" link and reset your password."
+msgstr "Si après 10 minutes vous n'avez pas la notification, rendez-vous sur la page de connexion, cliquez sur le lien\"Vous avez perdu votre mot de passe\" et réinitialiser votre mot de passe."
+
+#: loginlock.php:780
+msgid "Do not remind me again"
+msgstr "Ne pas me le rappeler à nouveau"
+
+#: loginlock.php:802
+#: loginlock.php:805
+#: loginlock.php:810
+msgid "Invalid key"
+msgstr "Clef invalide"
+
+#: loginlock.php:822
+#: loginlock.php:874
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#: loginlock.php:822
+msgid "Your password reset key is invalid."
+msgstr "Votre clé de réinitialisation de mot de passe est invalide."
+
+#: loginlock.php:831
+msgid "You are not authorized to take that action!"
+msgstr "Vous n'êtes pas autorisé à faire cette action !"
+
+#: loginlock.php:835
+msgid "The passwords do not match."
+msgstr "Vos mots de passe ne correspondent pas."
+
+#: loginlock.php:839
+msgid "You cannot reuse that password yet. Please choose a different password."
+msgstr "Vous ne pouvez pas encore réutiliser ce mot de passe. Choisissez en un différent."
+
+#: loginlock.php:851
+msgid "Password Reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: loginlock.php:851
+msgid "Your password has been reset."
+msgstr "Votre mot de passe a été réinitialisé."
+
+#: loginlock.php:851
+#: loginlock.php:917
+msgid "Log in"
+msgstr "Connexion"
+
+#: loginlock.php:858
+msgid "You are not authorized to take that action"
+msgstr "Vous n'êtes pas autorisé à faire cette action"
+
+#: loginlock.php:866
+msgid "You must reset your password."
+msgstr "Vous devez réinitialiser votre mot de passe."
+
+#: loginlock.php:870
+msgid "You may not reuse old passwords!"
+msgstr "Vous ne pouvez pas réutiliser les anciens mots de passe !"
+
+#: loginlock.php:872
+msgid "Enter your new password below:"
+msgstr "Entrez votre nouveau mot de passe ci-dessous : "
+
+#: loginlock.php:882
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: loginlock.php:886
+msgid "Confirm new password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: loginlock.php:890
+msgid "Strength indicator"
+msgstr "Indicateur de sûreté"
+
+#: loginlock.php:894
+msgid "NOTE"
+msgstr "Note"
+
+#: loginlock.php:896
+msgid "The password must be at least"
+msgstr "Le mot de passe doit avoir au moins"
+
+#: loginlock.php:900
+msgid "characters long."
+msgstr "caractères de long."
+
+#: loginlock.php:904
+msgid "You must include upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ &amp;."
+msgstr "Vous devez inclure des lettres majuscules et minuscules, des nombres et des symboles comme ! \" ? $ % ^ &amp;."
+
+#: loginlock.php:906
+msgid "You must include upper and lower case letters and numbers."
+msgstr "Vous devez inclure des lettres majuscules, minuscules et des nombres."
+
+#: loginlock.php:919
+msgid "Register"
+msgstr "Inscription"
+
+#: loginlock.php:963
+msgid "<strong>ERROR:</strong> "
+msgstr "<strong>Erreur&nbsp;:</strong>"
+
+#: loginlock.php:983
+msgid "Password Policies"
+msgstr "Stratégie de mot de passe"
+
+#: loginlock.php:988
+#: loginlock.php:1051
+msgid "You MUST include upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ &amp;."
+msgstr "Vous DEVEZ  inclure des lettres majuscules et minuscules, des nombres et des symboles comme ! \" ? $ % ^ &amp;."
+
+#: loginlock.php:990
+#: loginlock.php:1065
+msgid "You MUST include upper and lower case letters and numbers."
+msgstr "Vous DEVEZ inclure des lettres majuscules, minuscules et des nombres."
+
+#: loginlock.php:1027
+msgid "Your password is one of the most commonly used passwords! Pick a different one."
+msgstr "Votre mot de passe est l'un des mots de passe les plus couramment utilisés ! Choisissez en un autre."
+
+#: loginlock.php:1070
+msgid "Your password is too short"
+msgstr "Votre mot de passe est trop court"
+
+#: loginlock.php:1169
+msgid "You do not have permission to access this page."
+msgstr "Vous n&#8217;avez pas les droits suffisants pour accéder à cette page."
+
+#: loginlock.php:1180
+msgid "YOU DID NOT CHECK THE BOX!"
+msgstr "VOUS N'AVEZ PAS COCHE LA BOITE !"
+
+#: loginlock.php:1190
+msgid "DONE. ALL USER PASSWORDS HAVE BEEN RESET TO A RANDOM VALUE."
+msgstr "FAIT. LES MOTS DE PASSE DES UTILISATEURS ONT ETE REINITIALISE A UNE VALEUR ALEATOIRE."
+
+#: loginlock.php:1219
+msgid "Locked out IPs released."
+msgstr " IPs Lock-out libérés."
+
+#: loginlock.php:1241
+msgid "Login Lock"
+msgstr "Login Lock"
+
+#: loginlock.php:1263
+msgid "Login Protection Settings"
+msgstr "Paramètres de Protection de Login Lock"
+
+#: loginlock.php:1267
+msgid "If someone attempts "
+msgstr "Si quelqu'un tente"
+
+#: loginlock.php:1269
+msgid "logins that have invalid usernames or passwords within "
+msgstr "connexions avec des noms d'utilisateurs ou des mots de passe invalides dans les"
+
+#: loginlock.php:1272
+msgid "minutes"
+msgstr "minutes"
+
+#: loginlock.php:1274
+msgid "then block their IP address for "
+msgstr "alors bloquer son adresse IP pour"
+
+#: loginlock.php:1276
+msgid "minutes "
+msgstr "minutes"
+
+#: loginlock.php:1277
+msgid "Suggested settings: 5 attempts in 30 minutes, block for 60 minutes"
+msgstr "Paramètres suggérés : 5 tentatives en 30 minutes, bloquer pendant 60 minutes"
+
+#: loginlock.php:1286
+msgid "Email all admins?"
+msgstr "Envoyer un e-mail à tous les administrateurs ?"
+
+#: loginlock.php:1287
+msgid "It's probably a good idea to leave this enabled so that you're aware when people might be trying to break into your site"
+msgstr "C'est probablement une bonne idée de l'activer ce qui vous permet d'être averti quand des inconnus tentent de pénétrer dans votre site"
+
+#: loginlock.php:1290
+#: loginlock.php:1314
+#: loginlock.php:1369
+msgid "yes"
+msgstr "Oui"
+
+#: loginlock.php:1291
+#: loginlock.php:1315
+#: loginlock.php:1370
+msgid "no"
+msgstr "Non"
+
+#: loginlock.php:1293
+msgid "(When enabled all administrators will receive a notice each time an IP address is blocked)"
+msgstr "(Quand activé tous les administrateurs reçoivront une notification à chaque fois qu'une adresse IP sera bloquée)"
+
+#: loginlock.php:1304
+msgid "Password Policy Settings"
+msgstr "Paramètres de stratégie de mot de passe"
+
+#: loginlock.php:1310
+msgid "Enable the password policies shown below?"
+msgstr "Activer les politiques de mot de passe ci-dessous ?"
+
+#: loginlock.php:1311
+msgid "Suggested setting: Yes, enable password policies that enforce strong password selection"
+msgstr "Paramètres suggérés : Oui, activer les politiques de mot de passe qui appliquent la sélection mot de passe fort"
+
+#: loginlock.php:1317
+msgid "(If disabled no password policies will be enforced)"
+msgstr "(Si désactivé aucune règle pour les mots de passe ne sera appliquée)"
+
+#: loginlock.php:1322
+msgid "Require password changes: "
+msgstr "Exiger des changements de mot de passe :"
+
+#: loginlock.php:1323
+msgid "Suggested setting: 30 days at most, frequent password changes make your passwords a moving target"
+msgstr "Paramètres suggérés : 30 jours au plus, les changements fréquents de mot de passe en font une cible mouvante"
+
+#: loginlock.php:1326
+msgid "Every"
+msgstr "Tous les"
+
+#: loginlock.php:1327
+msgid "days "
+msgstr "jours"
+
+#: loginlock.php:1329
+msgid "(This forces users to change their passwords upon login every X number of days)"
+msgstr "(Cela oblige les utilisateurs à changer leurs mots de passe de connexion à chaque X nombre de jours)"
+
+#: loginlock.php:1331
+msgid "Set to 0 (zero) to disable this policy"
+msgstr "Mettre 0 (zéro) pour désactiver cette fonctionnalité"
+
+#: loginlock.php:1336
+msgid "Minimum password length: "
+msgstr "Longueur minimale du mot de passe :"
+
+#: loginlock.php:1337
+msgid "Suggested setting: 12 or more characters, the longer the password the harder it is to crack"
+msgstr "Paramètres suggérés : 12 caractères ou plus, plus le mot de passe est long plus il est difficile à craquer"
+
+#: loginlock.php:1341
+msgid "characters"
+msgstr "caractères"
+
+#: loginlock.php:1343
+msgid "(Cannot be less than 4, cannot be more than 64 - the maximum length allowed by WordPress is 64)"
+msgstr "(Ne peut pas être inférieur à 4, ne peut pas être supérieur à 64 - la longueur maximale autorisée par WordPress est de 64)"
+
+#: loginlock.php:1348
+msgid "Password strength: "
+msgstr "Sûreté du mot de passe"
+
+#: loginlock.php:1349
+msgid "Suggested setting: High, because complex passwords are more difficult to crack"
+msgstr "Paramètres suggérés : Haute, parce que les mots de passe complexes sont plus difficiles à craquer"
+
+#: loginlock.php:1353
+msgid "Low - no specific character requirements"
+msgstr "Faible - Pas d'exigences de caractères spécifiques"
+
+#: loginlock.php:1356
+msgid "Medium - Require uppercase and lowercase letters, plus numbers"
+msgstr "Moyenne - Exige des lettres majuscules et minuscules, ainsi que des nombres"
+
+#: loginlock.php:1359
+msgid "High - Same as Medium, but also require special characters such as !@#$%^&*() etc."
+msgstr "Haute - Même que moyenne, mais exige aussi des caractères spéciaux tels que  !@#$%^&*() etc."
+
+#: loginlock.php:1364
+msgid "Password recycling:"
+msgstr "Recyclage du mot de passe"
+
+#: loginlock.php:1365
+msgid "Suggested setting: Yes, disallow password reuse."
+msgstr "Paramètres suggérés : Oui, refuser la réutilisation du mot de passe."
+
+#: loginlock.php:1368
+msgid "Disallow password reuse?"
+msgstr "Refuser la réutilisation du mot de passe ?"
+
+#: loginlock.php:1372
+msgid "(If enabled the last 5 passwords per user will be remembered and not allowed to be reused)"
+msgstr "(Si activée les 5 derniers mots de passe par utilisateur seront mis en mémoire et ne pourront pas être réutilisés)"
+
+#: loginlock.php:1383
+msgid "Idle Logout"
+msgstr "Deconnexion des inactifs"
+
+#: loginlock.php:1389
+msgid "Logout idle users"
+msgstr "Déconnexion des inactifs"
+
+#: loginlock.php:1390
+msgid "Suggested setting: 15 minutes at most, the helps guard against having unauthorized people use someones logged-in account in cases where computers are shared, lost, or stolen"
+msgstr "Paramètres suggérés&nbsp;: 15 minutes tout au plus, cela protège des personnes non autorisées d'utiliser le compte d'une personne connectée dans les cas où les ordinateurs sont partagés, perdu ou volé"
+
+#: loginlock.php:1393
+msgid "Logout users after"
+msgstr "Déconnexion des utilisateurs après"
+
+#: loginlock.php:1395
+msgid "minutes of no activity"
+msgstr "minutes d'inactivité"
+
+#: loginlock.php:1397
+msgid "Set to 0 (zero) to disable this feature."
+msgstr "Mettre 0 (zéro) pour désactiver cette fonctionnalité"
+
+#: loginlock.php:1406
+msgid "Update Settings"
+msgstr "Mise à jour des paramètres "
+
+#: loginlock.php:1413
+#: loginlock.php:1439
+msgid "Force Password Changes Now"
+msgstr "Forcer le changement de mot de passe maintenant"
+
+#: loginlock.php:1419
+msgid "In case of emergency"
+msgstr "En cas d'urgence"
+
+#: loginlock.php:1425
+msgid "Logout all users and force password changes now"
+msgstr "Déconnexion de tous les utilisateurs et forcer les changements de mot de passe maintenant"
+
+#: loginlock.php:1428
+msgid "Check the box and click the button below to force all users - INCLUDING YOU - to change their passwords the next time they access this site"
+msgstr "Cochez la case et cliquez sur le bouton ci-dessous pour forcer tous les utilisateurs - Y COMPRIS VOUS - à changer leurs mots de passe la prochaine fois qu'ils accèdent à ce site"
+
+#: loginlock.php:1430
+msgid "NOTE: When you do this ALL user passwords will be reset to a random value, ALL users will receive an email message instructing them to reset their passwords, and ALL users will be forcibly logged out immediately - INCLUDING YOU!"
+msgstr "REMARQUE : Lorsque vous effectuez ça TOUS les mots de passe utilisateur seront réinitialisés à une valeur aléatoire, TOUS les utilisateurs recevront un message électronique leur demandant de réinitialiser leurs mots de passe, et TOUS les utilisateurs seront immediatement déconnectés de force - Y COMPRIS VOUS&nbsp;!"
+
+#: loginlock.php:1432
+#, php-format
+msgid "You currently have %1$s users in your database. If you have more than 100 users then using this feature might cause your hosting company or mail service provider to flag your account for sending too many email messages too fast!"
+msgstr "Vous avez actuellement %1$s utilisateur(s) dans votre base de données. Si vous avez plus de 100 utilisateurs utiliser cette fonction pourrait entraîner votre d'hébergeur ou votre fournisseur de service de courrier à signaler votre compte pour envoie trop nombreux et trop rapide de messages e-mail !"
+
+#: loginlock.php:1447
+msgid "Blocked IP Addresses"
+msgstr "Adresses IP bloquées"
+
+#: loginlock.php:1459
+msgid "No IP addresses are blocked."
+msgstr "Aucune adresse IP bloquée."
+
+#: loginlock.php:1471
+msgid "minutes remaining"
+msgstr "minutes restantes"
+
+#: loginlock.php:1482
+msgid "Unblock Selected"
+msgstr "Deverouiller les sélectionnés"
+
+#: loginlock.php:1499
+msgid "Donate $10, $20 or $50!"
+msgstr "Donner 10$, 20$ ou 50$&nbsp;!"
+
+#: loginlock.php:1500
+msgid "This plugin represents countless hours of work, if you use it please donate a token of your appreciation!"
+msgstr "Cette extension représente d'innombrables heures de travail, si vous l'utilisez s'il vous plaît donner un gage de votre appréciation !"
+
+#: loginlock.php:1531
+#, php-format
+msgid "Site protected by <a href=\"%1$s\"> LOGIN LOCK</a><br/> Created by <a href=\"%2$s\">WordPress Security</a>"
+msgstr "Site protégé par <a href=\"%1$s\"> LOGIN LOCK</a><br/> Créé par <a href=\"%2$s\">WordPress Security</a>"
+
+#: loginlock.php:1562
+msgid "<strong>ERROR</strong>: You must enter a username."
+msgstr "<strong>ERREUR</strong>&nbsp;: Vous devez entrer un nom d'utilisateur."
+
+#: loginlock.php:1565
+msgid "<strong>ERROR</strong>: You must enter a password"
+msgstr "<strong>ERREUR</strong>&nbsp;: Vous devez entrer un mot de passe"
+
+#: loginlock.php:1573
+#, php-format
+msgid "<strong>ERROR</strong>: Invalid username. <a href=\"%s\" title=\"Password Lost and Found\">Lost your password</a>?"
+msgstr "<strong>ERREUR</strong>&nbsp;: l&rsquo;identifiant n&rsquo;est pas valide. <a href=\"%s\" title=\"Perte de mot de passe\">Avez-vous perdu votre mot de passe</a>&nbsp;?"
+
+#: loginlock.php:1582
+#, php-format
+msgid "<strong>ERROR</strong>: Incorrect password. <a href=\"%s\" title=\"Password Lost and Found\">Lost your password</a>?"
+msgstr "<strong>ERREUR</strong>: Mot de passe incorrect. <a href=\"%s\" title=\"Récupération de mot de passe\">Mot de passe oublié</a>?"
+
+#: loginlock.php:1610
+#: loginlock.php:1627
+msgid "<strong>ERROR</strong>: You've been blocked due to too many failed login attempts."
+msgstr "<strong> ERREUR </strong>: Vous avez été bloqué en raison de trop nombreuses tentatives de connexion infructueuses."
+
+#: loginlock.php:1616
+msgid "<strong>ERROR</strong>: Invalid username or password."
+msgstr "<strong>ERREUR</strong>&nbsp;: l&rsquo;identifiant ou le mot de passe n&rsquo;est pas valide."
+
+#: loginlock.php:1630
+#, php-format
+msgid "<strong>ERROR</strong>: Invalid username or password. <a href=\"%s\" title=\" Lost your password? \">Lost your password</a>?"
+msgstr "<strong>ERREUR</strong>&nbsp;: l&rsquo;identifiant ou le mot de passe n&rsquo;est pas valide. <a href=\"%s\" title=\"Perte de mot de passe\">Avez-vous perdu votre mot de passe</a>&nbsp;?"
+
+#: plugin_tools.php:45
+msgid "Why not do any or all of the following:"
+msgstr "Pourquoi ne pas faire quelques uns (ou tous) les éléments suivants&nbsp;:"
+
+#: plugin_tools.php:47
+msgid "Link to our site please!"
+msgstr "Faire un lien vers notre site svp&nbsp;!"
+
+#: plugin_tools.php:48
+msgid "Tweet this plugin!"
+msgstr "Tweet cette extension&nbsp;!"
+
+#: plugin_tools.php:49
+msgid "Follow us on Twitter"
+msgstr "Suivez-nous sur Twitter"
+
+#: plugin_tools.php:50
+msgid "Give it a 5 star rating on WordPress.org"
+msgstr "Donnez-lui 5 étoiles sur WordPress.org"
+
+#: plugin_tools.php:51
+msgid "Donate a token of your appreciation"
+msgstr "Donnez en gage de votre appréciation."
+
+#: plugin_tools.php:53
+msgid "Like this plugin?"
+msgstr "Vous aimez cette extension &nbsp;?"
+
+#: plugin_tools.php:60
+msgid "If you have any problems with this plugin, or good ideas for improvements or new features, please "
+msgstr "Si vous avez des problèmes avec cette extension, ou de bonnes idées d'améliorations ou d'ajout de nouvelles fonctionnalités, s'il vous plaît"
+
+#: plugin_tools.php:60
+msgid "contact us!"
+msgstr "contacter nous&nbsp;!"
+
+#: plugin_tools.php:61
+msgid "Need support?"
+msgstr "Besoin d'aide&nbsp;?"
+
+#: plugin_tools.php:66
+msgid "Our Sponsors"
+msgstr "Nos sponsors"
+
+#: plugin_tools.php:109
+#: plugin_tools.php:151
+msgid "no news items, feed might be broken..."
+msgstr "Aucune nouvelle, le flux est peut-être brisé..."
+
+#: plugin_tools.php:117
+#: plugin_tools.php:164
+msgid "Subscribe with RSS"
+msgstr "Souscrire aux flux RSS"
+
+#: plugin_tools.php:118
+#: plugin_tools.php:166
+msgid "Subscribe by email"
+msgstr "S'inscrire par email"
+
+#: plugin_tools.php:120
+msgid "Latest news from WPSecurity.net"
+msgstr "Les dernières nouvelles de WPSecurity.net"
+
+#: plugin_tools.php:180
+msgid "WordPress Security News"
+msgstr "Nouvelles de sécurité WordPress "
+
+#~ msgid "ALERT: The admin of "
+#~ msgstr "ALERTE : L'administrateur de"
+
+#~ msgid "Site protected by"
+#~ msgstr "Site protégé par"
+
+#~ msgid "Created by "
+#~ msgstr "Créé par"
+
+#~ msgid ""
+#~ "If you reload, this widget will be gone and never appear again, unless "
+#~ "you decide to delete the database option "
+#~ msgstr ""
+#~ "Si vous rechargez, ce widget disparaitra et n'apparaitra plus jamais à "
+#~ "nouveau, sauf si vous décidez de supprimer l'option dans la base de "
+#~ "données"
