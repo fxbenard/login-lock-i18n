@@ -23,8 +23,6 @@ core WordPress code. Those portions are copyright of their respective owners.
 ======================================================================*/
 
 
-
-
 define( 'WPSEC_LOGINLOCK_VERSION', '2.2.4' );
 define( 'WPSEC_LOGINLOCK_DB_VERSION', '2.0' );
 define( 'WPSEC_LOGINLOCK_URL', plugin_dir_url(__FILE__) );
@@ -510,7 +508,7 @@ class LoginLock {
 		else
 			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-		$message = __('ALERT: The admin of ' . $blogname . ' requires that you reset the password for the following account:','loginlock') . "\r\n\r\n";
+		$message = sprintf( __('ALERT: The admin of %s requires that you reset the password for the following account:','loginlock'), $blogname ). "\r\n\r\n";
 		$message .= network_site_url() . "\r\n\r\n";
 		$message .= sprintf(__('Username: %s','loginlock'), $user_login) . "\r\n\r\n";
 		$message .= __('You must reset your password before you can log back in. To reset your password, visit the following address:','loginlock') . "\r\n\r\n";
@@ -522,7 +520,7 @@ class LoginLock {
 		$message = apply_filters('retrieve_password_message', $message, $key);
 
 		if ( $message && !wp_mail($user_email, $title, $message) )
-			return  __('The e-mail could not be sent to '. $user_login ) . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.','loginlock');
+			return  __('The e-mail could not be sent to','loginlock'). $user_login . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.','loginlock');
 
 	}
 
@@ -1573,7 +1571,7 @@ class LoginLock {
 		$userdata = get_user_by( 'login', $username );
 
 		if ( !$userdata ) {
-			return new WP_Error('invalid_username', sprintf(__('<strong>ERROR</strong>: Invalid username. <a href="%s" title="Password Lost and Found">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+			return new WP_Error('invalid_username', sprintf(__('<strong>ERROR</strong>: Invalid username. <a href="%s" title="Password Lost and Found">Lost your password</a>?','loginlock'), site_url('wp-login.php?action=lostpassword')));
 		}
 
 		$userdata = apply_filters('wp_authenticate_user', $userdata, $password);
@@ -1582,7 +1580,7 @@ class LoginLock {
 		}
 
 		if ( !wp_check_password($password, $userdata->user_pass, $userdata->ID) ) {
-			return new WP_Error('incorrect_password', sprintf(__('<strong>ERROR</strong>: Incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+			return new WP_Error('incorrect_password', sprintf(__('<strong>ERROR</strong>: Incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?','loginlock'), site_url('wp-login.php?action=lostpassword')));
 		}
 
 		$user =  new WP_User($userdata->ID);
@@ -1610,13 +1608,13 @@ if (!function_exists('wp_authenticate')) {
 		$password = trim($password);
 
 		if ( "" != $loginlock->is_locked_out() ) {
-				return new WP_Error('incorrect_password', __("<strong>ERROR</strong>: You've been blocked due to too many failed login attempts."));
+				return new WP_Error('incorrect_password', __('<strong>ERROR</strong>: You\'ve been blocked due to too many failed login attempts.','loginlock'));
 		}
 
 		$user = apply_filters('authenticate', null, $username, $password);
 
 		if ( $user == null ) {
-			$user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or password.'));
+			$user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or password.','loginlock'));
 		}
 
 		$ignore_codes = array('empty_username', 'empty_password');
@@ -1627,10 +1625,10 @@ if (!function_exists('wp_authenticate')) {
 
 			if ( $loginlock->ll_options['max_login_retries'] <= $loginlock->count_failed($username) ) {
 				$loginlock->lockout($username);
-				return new WP_Error('incorrect_password', __("<strong>ERROR</strong>: You've been blocked due to too many failed login attempts."));
+				return new WP_Error('incorrect_password', __('<strong>ERROR</strong>: You\'ve been blocked due to too many failed login attempts.','loginlock'));
 			}
 
-			return new WP_Error('authentication_failed', sprintf(__('<strong>ERROR</strong>: Invalid username or password. <a href="%s" title=" Lost your password? ">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+			return new WP_Error('authentication_failed', sprintf(__('<strong>ERROR</strong>: Invalid username or password. <a href="%s" title=" Lost your password? ">Lost your password</a>?','loginlock'), site_url('wp-login.php?action=lostpassword')));
 
 		}
 
