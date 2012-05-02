@@ -2,7 +2,7 @@
 /* 
 Plugin Name: Login Lock
 Plugin URI: https://wpsecurity.net/wordpress-security-login-lock/
-Version: v2.2.7
+Version: v2.2.8
 Author: Mark Edwards / WPSecurity.net 
 Author URI: https://wpsecurity.net
 Description: Enforces strong password policies, monitors login attempts, blocks IP address for too many failed login attempts.
@@ -361,7 +361,7 @@ class LoginLock {
 		$message .= __('The targeted username was','loginlock');
 		$message .= ' ' . $username . "\n\n";
 
-		$message .= __('The IP address has been blocked for','loginlock');
+		$message .= __('The IP address has been blocked for ','loginlock');
 		$message .= $this->ll_options['lockout_length'];
 		$message .= __('minutes.','loginlock') . "\n\n";
 
